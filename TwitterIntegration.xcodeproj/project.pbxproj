@@ -82,11 +82,11 @@
 			isa = PBXGroup;
 			children = (
 				11DED43B1B625F0D00074F42 /* AppDelegate.swift */,
+				11DED45B1B62600100074F42 /* TwitterViewController.swift */,
+				11DED45C1B62600100074F42 /* TwitterViewController.xib */,
 				11DED4421B625F0D00074F42 /* Images.xcassets */,
 				11DED4441B625F0E00074F42 /* LaunchScreen.xib */,
 				11DED4391B625F0D00074F42 /* Supporting Files */,
-				11DED45B1B62600100074F42 /* TwitterViewController.swift */,
-				11DED45C1B62600100074F42 /* TwitterViewController.xib */,
 			);
 			path = TwitterIntegration;
 			sourceTree = "<group>";
