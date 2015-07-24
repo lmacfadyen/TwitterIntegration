@@ -15,8 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let nav = UINavigationController()
+        let vc = TwitterViewController ( nibName:"TwitterViewController", bundle: nil)
+        
+        nav.pushViewController(vc, animated: false)
+        self.window!.rootViewController = nav
+        self.window!.makeKeyAndVisible()
+        
         return true
+        
     }
 
     func applicationWillResignActive(application: UIApplication) {

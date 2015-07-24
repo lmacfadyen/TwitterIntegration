@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		11DED43C1B625F0D00074F42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DED43B1B625F0D00074F42 /* AppDelegate.swift */; };
-		11DED43E1B625F0D00074F42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DED43D1B625F0D00074F42 /* ViewController.swift */; };
-		11DED4411B625F0D00074F42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11DED43F1B625F0D00074F42 /* Main.storyboard */; };
 		11DED4431B625F0D00074F42 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11DED4421B625F0D00074F42 /* Images.xcassets */; };
 		11DED4461B625F0E00074F42 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11DED4441B625F0E00074F42 /* LaunchScreen.xib */; };
 		11DED4521B625F0E00074F42 /* TwitterIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DED4511B625F0E00074F42 /* TwitterIntegrationTests.swift */; };
+		11DED45D1B62600100074F42 /* TwitterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DED45B1B62600100074F42 /* TwitterViewController.swift */; };
+		11DED45E1B62600100074F42 /* TwitterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 11DED45C1B62600100074F42 /* TwitterViewController.xib */; };
+		11DED4601B62709500074F42 /* RandomImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 11DED45F1B62709500074F42 /* RandomImage.jpg */; };
+		11DED4621B6296DD00074F42 /* Fish.gif in Resources */ = {isa = PBXBuildFile; fileRef = 11DED4611B6296DD00074F42 /* Fish.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +31,15 @@
 		11DED4361B625F0D00074F42 /* TwitterIntegration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterIntegration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11DED43A1B625F0D00074F42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11DED43B1B625F0D00074F42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		11DED43D1B625F0D00074F42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		11DED4401B625F0D00074F42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		11DED4421B625F0D00074F42 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		11DED4451B625F0E00074F42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		11DED44B1B625F0E00074F42 /* TwitterIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TwitterIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		11DED4501B625F0E00074F42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11DED4511B625F0E00074F42 /* TwitterIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterIntegrationTests.swift; sourceTree = "<group>"; };
+		11DED45B1B62600100074F42 /* TwitterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterViewController.swift; sourceTree = "<group>"; };
+		11DED45C1B62600100074F42 /* TwitterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwitterViewController.xib; sourceTree = "<group>"; };
+		11DED45F1B62709500074F42 /* RandomImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = RandomImage.jpg; path = ../../../../Desktop/RandomImage.jpg; sourceTree = "<group>"; };
+		11DED4611B6296DD00074F42 /* Fish.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = Fish.gif; path = ../../../Fish.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,11 +82,11 @@
 			isa = PBXGroup;
 			children = (
 				11DED43B1B625F0D00074F42 /* AppDelegate.swift */,
-				11DED43D1B625F0D00074F42 /* ViewController.swift */,
-				11DED43F1B625F0D00074F42 /* Main.storyboard */,
 				11DED4421B625F0D00074F42 /* Images.xcassets */,
 				11DED4441B625F0E00074F42 /* LaunchScreen.xib */,
 				11DED4391B625F0D00074F42 /* Supporting Files */,
+				11DED45B1B62600100074F42 /* TwitterViewController.swift */,
+				11DED45C1B62600100074F42 /* TwitterViewController.xib */,
 			);
 			path = TwitterIntegration;
 			sourceTree = "<group>";
@@ -90,6 +94,8 @@
 		11DED4391B625F0D00074F42 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				11DED4611B6296DD00074F42 /* Fish.gif */,
+				11DED45F1B62709500074F42 /* RandomImage.jpg */,
 				11DED43A1B625F0D00074F42 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -192,8 +198,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11DED4411B625F0D00074F42 /* Main.storyboard in Resources */,
+				11DED45E1B62600100074F42 /* TwitterViewController.xib in Resources */,
 				11DED4461B625F0E00074F42 /* LaunchScreen.xib in Resources */,
+				11DED4601B62709500074F42 /* RandomImage.jpg in Resources */,
+				11DED4621B6296DD00074F42 /* Fish.gif in Resources */,
 				11DED4431B625F0D00074F42 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,7 +220,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11DED43E1B625F0D00074F42 /* ViewController.swift in Sources */,
+				11DED45D1B62600100074F42 /* TwitterViewController.swift in Sources */,
 				11DED43C1B625F0D00074F42 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,14 +244,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		11DED43F1B625F0D00074F42 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				11DED4401B625F0D00074F42 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		11DED4441B625F0E00074F42 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
