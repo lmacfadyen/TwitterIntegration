@@ -67,7 +67,7 @@ class TwitterViewController: UIViewController {
                         message["status"] = "Posting a tweet with Animated GIF from iOS App" + "\r\n" + "\r\n" + "#Cool"
                         
                         let requestURL = NSURL(string:
-                            "https://api.twitter.com/1.1/statuses/update_with_media.json")
+                            "https://api.twitter.com/1.1/statuses/update.json")
                         let postRequest = SLRequest(forServiceType:
                             SLServiceTypeTwitter,
                             requestMethod: SLRequestMethod.POST,
