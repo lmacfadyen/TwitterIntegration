@@ -35,12 +35,12 @@ class TwitterViewController: UIViewController {
     func tweetSLCVC()
     {
         if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter){
-            var twitterController:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+            let twitterController:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
             twitterController.setInitialText("Posting a tweet from iOS App" + "\r\n" + "\r\n" + "#Cool")
             twitterController.addImage(image)
             self.presentViewController(twitterController, animated: true, completion: nil)
         } else {
-            var alert = UIAlertController(title: "Twitter Account", message: "Please login to your Twitter account.", preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Twitter Account", message: "Please login to your Twitter account.", preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         }
@@ -49,8 +49,8 @@ class TwitterViewController: UIViewController {
     func tweetSLR()
     {
         
-        var url = NSBundle.mainBundle().URLForResource("Fish", withExtension: "gif")
-        var imageData = NSData(contentsOfURL: url!)
+        let url = NSBundle.mainBundle().URLForResource("Fish", withExtension: "gif")
+        let imageData = NSData(contentsOfURL: url!)
         let account = ACAccountStore()
         let accountType = account.accountTypeWithAccountTypeIdentifier(
             ACAccountTypeIdentifierTwitter)
@@ -82,16 +82,16 @@ class TwitterViewController: UIViewController {
                             urlResponse: NSHTTPURLResponse!,
                             error: NSError!) -> Void in
                             if let err = error {
-                                println("Error : \(err.localizedDescription)")
+                                print("Error : \(err.localizedDescription)")
                             }
-                            println("Twitter HTTP response \(urlResponse.statusCode)")
+                            print("Twitter HTTP response \(urlResponse.statusCode)")
                             
                         })
                     }
                 }
                 else
                 {
-                    var alert = UIAlertController(title: "Twitter Account", message: "Please login to your Twitter account.", preferredStyle: UIAlertControllerStyle.Alert)
+                    let alert = UIAlertController(title: "Twitter Account", message: "Please login to your Twitter account.", preferredStyle: UIAlertControllerStyle.Alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
                     self.presentViewController(alert, animated: true, completion: nil)
                 }
