@@ -29,7 +29,7 @@ class TwitterViewController: UIViewController {
     }
 
     @IBAction func clickedSLR(sender: AnyObject) {
-        tweetSLR()
+        tweetSLRSeparateMedia()
     }
     
     func tweetSLCVC()
@@ -46,15 +46,11 @@ class TwitterViewController: UIViewController {
         }
     }
     
-    func tweetSLR()
+    func tweetSLRSeparateMedia()
     {
-        
-        let url = NSBundle.mainBundle().URLForResource("Fish", withExtension: "gif")
-        let imageData = NSData(contentsOfURL: url!)
         let account = ACAccountStore()
         let accountType = account.accountTypeWithAccountTypeIdentifier(
             ACAccountTypeIdentifierTwitter)
-        
         account.requestAccessToAccountsWithType(accountType, options: nil,
             completion: {(success: Bool, error: NSError!) -> Void in
                 if success {
@@ -63,30 +59,43 @@ class TwitterViewController: UIViewController {
                     
                     if arrayOfAccounts.count > 0 {
                         let twitterAccount = arrayOfAccounts.first as! ACAccount
-                        var message = Dictionary<String, AnyObject>()
-                        message["status"] = "Posting a tweet with Animated GIF from iOS App" + "\r\n" + "\r\n" + "#Cool"
+                        // Upload media first and use returned media_id_string in separate Tweet
+                        // Use media/upload.json to post GIF first
+                        let uploadURL = NSURL(string: "https://upload.twitter.com/1.1/media/upload.json")
+                        let url = NSBundle.mainBundle().URLForResource("Fish", withExtension: "gif")
+                        let imageData = NSData(contentsOfURL: url!)
+                        guard (imageData != nil) else {print("error: There is no imageData"); return}
                         
-                        let requestURL = NSURL(string:
-                            "https://api.twitter.com/1.1/statuses/update.json")
-                        let postRequest = SLRequest(forServiceType:
-                            SLServiceTypeTwitter,
-                            requestMethod: SLRequestMethod.POST,
-                            URL: requestURL,
-                            parameters: message)
+                        let uploadRequest = SLRequest(forServiceType:SLServiceTypeTwitter, requestMethod: .POST, URL: uploadURL, parameters: nil)
                         
-                        postRequest.account = twitterAccount
-                        postRequest.addMultipartData(imageData, withName: "media", type: nil, filename: nil)
+                        uploadRequest.account = twitterAccount
+                        uploadRequest.addMultipartData(imageData, withName: "media", type: nil, filename: nil)
                         
-                        postRequest.performRequestWithHandler({
-                            (responseData: NSData!,
-                            urlResponse: NSHTTPURLResponse!,
-                            error: NSError!) -> Void in
-                            if let err = error {
-                                print("Error : \(err.localizedDescription)")
-                            }
-                            print("Twitter HTTP response \(urlResponse.statusCode)")
-                            
-                        })
+                        uploadRequest.performRequestWithHandler()
+                            {   (responseData: NSData!, urlResponse: NSHTTPURLResponse!, error: NSError!) -> Void in
+                                // Get the media_id_string from response
+                                let mediaIDString = self.stringForKey("media_id_string", fromJSONData:responseData)
+                                guard (mediaIDString != nil) else {print("error: no media id in response \(urlResponse.statusCode)"); return}
+                                
+                                let statusKey = "status" as NSString
+                                let mediaIDKey = "media_ids" as NSString
+                                // Use statuses/update.json for the tweet
+                                let statusURL = NSURL(string: "https://api.twitter.com/1.1/statuses/update.json")
+                                let message = "Posting a tweet with Animated GIF from iOS App" + "\r\n" + "\r\n" + "#Cool"
+                                // Separate request to post the tweet
+                                let statusRequest = SLRequest(forServiceType:SLServiceTypeTwitter, requestMethod: .POST, URL: statusURL, parameters: [statusKey : message, mediaIDKey : mediaIDString!])
+                                
+                                statusRequest.account = twitterAccount
+                                
+                                statusRequest.performRequestWithHandler()
+                                    {   (responseData: NSData!, urlResponse: NSHTTPURLResponse!, error: NSError!) -> Void in
+                                        
+                                        if let err = error {  
+                                            print("error : \(err.localizedDescription)")  
+                                        }  
+                                        print("Twitter HTTP response \(urlResponse.statusCode)")  
+                                }  
+                        }
                     }
                 }
                 else
@@ -96,7 +105,19 @@ class TwitterViewController: UIViewController {
                     self.presentViewController(alert, animated: true, completion: nil)
                 }
         })
+     
     }
-
+    
+    private func stringForKey(key: String, fromJSONData data: NSData?) -> String?
+    {
+        guard let inData = data else {return nil}
+        do
+        {
+            let response = try NSJSONSerialization.JSONObjectWithData(inData, options: []) as? NSDictionary
+            let result = response?.objectForKey(key) as? String
+            return result
+        }
+        catch {return nil}  
+    }
    
 }
